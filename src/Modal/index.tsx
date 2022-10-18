@@ -101,8 +101,7 @@ const Modal: FC<Modals> = ({ handleClose, text, type }: Modals) => {
     <Backdrop onClick={handleClose}>
       {type === "dropIn" && (
         <motion.div
-          drag
-          onClick={(e: React.MouseEvent<any>) => e.stopPropagation()} //prevent click from bubbling which will close the modal
+          onClick={(e) => e.stopPropagation()} // Prevent click from closing modal
           className="modal orange-gradient"
           variants={dropIn}
           initial="hidden"

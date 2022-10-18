@@ -104,7 +104,8 @@ button {
   left: 0;
   height: 100%;
   width: 100%;
-  background: #000000e1; /*adding e1 at the end of hex color scheme adjusts the opacity*/
+  background: #000000e1;
+  /*adding e1 at the end of hex color scheme adjusts the opacity*/
   display: flex;
   align-items: center;
   justify-content: center;
@@ -275,19 +276,19 @@ li {
   color: #9e9e9e;
 }
 
-.modal-text {
+/* .modal-text {
   color: black;
-}
+} */
 
 @media screen and (min-width: 960px) {
   button {
     cursor: pointer;
   }
 
-  /* .modal {
+  .modal {
     width: 750px;
     height: 300px;
-  } */
+  }
   .input,
   input {
     width: calc(25vw);
