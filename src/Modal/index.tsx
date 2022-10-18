@@ -5,6 +5,8 @@ import Backdrop from "../Backdrop";
 interface Modals {
   text: string;
   handleClose: Function;
+  modalOpen: boolean;
+  type: string;
 }
 
 const dropIn = {
@@ -24,7 +26,7 @@ const dropIn = {
   exit: { y: "100vh", opacity: 0 },
 };
 
-const Modal: FC<Modals> = ({ handleClose, text }: Modals) => {
+const Modal: FC<Modals> = ({ handleClose, text, modalOpen, type }: Modals) => {
   return (
     <Backdrop onClick={handleClose}>
       <motion.div
