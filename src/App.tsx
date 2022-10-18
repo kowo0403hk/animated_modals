@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { FC, useState } from "react";
+import { motion } from "framer-motion";
+import Modal from "./Modal";
 
-function App() {
+const App: FC = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const close = () => setModalOpen(false);
+  const open = () => setModalOpen(true);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <motion.button
+        whileHover={{ scale: 1.1 }} //equals to CSS => button:hover {transform: scale(1.1)}
+        whileTap={{ scale: 0.9 }}
+        className="save-button"
+        onClick={() => null}
+      >
+        Launch Modal
+      </motion.button>
     </div>
   );
-}
+};
 
 export default App;
