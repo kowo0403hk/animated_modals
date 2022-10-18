@@ -19,12 +19,7 @@ const App: FC = () => {
       </motion.button>
 
       {modalOpen && (
-        <Modal
-          modalOpen={modalOpen}
-          text={modalType}
-          type={modalType}
-          handleClose={close}
-        />
+        <Modal text={modalType} type={modalType} handleClose={close} />
       )}
     </div>
   );
