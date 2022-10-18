@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 interface Backdrops {
   children: any;
-  onClick: React.Dispatch<React.SetStateAction<any>>;
+  onClick: () => void;
 }
 
 // this component works as an overlay

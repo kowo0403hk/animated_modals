@@ -6,6 +6,7 @@ interface Modals {
   text: string;
   handleClose: () => void;
   type: string;
+  modalOpen: boolean;
 }
 
 const dropIn = {
@@ -98,18 +99,20 @@ const badSuspension = {
 const Modal: FC<Modals> = ({ handleClose, text, type }: Modals) => {
   return (
     <Backdrop onClick={handleClose}>
-      <motion.div
-        drag
-        onClick={(e: React.MouseEvent<any>) => e.stopPropagation()} //prevent click from bubbling which will close the modal
-        className="modal orange-gradient"
-        variants={dropIn}
-        initial="hidden"
-        animate="visible"
-        exit="exit"
-      >
-        <ModalText text={text} />
-        <ModalButton onClick={handleClose} label="Close" />
-      </motion.div>
+      {type === "dropIn" && (
+        <motion.div
+          drag
+          onClick={(e: React.MouseEvent<any>) => e.stopPropagation()} //prevent click from bubbling which will close the modal
+          className="modal orange-gradient"
+          variants={dropIn}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+        >
+          <ModalText text={text} />
+          <ModalButton onClick={handleClose} label="Close" />
+        </motion.div>
+      )}
     </Backdrop>
   );
 };
