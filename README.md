@@ -1,4 +1,25 @@
-# Getting Started with Create React App
+# React Project: Animated Modals
+
+This is an antimaiton practice project to strengthen my knowledge about CSS anitmation using React and the Framer Motion package.
+
+All credits to Frieship.io (https://www.youtube.com/watch?v=SuqU904ZHA4).
+
+## Screenshots
+
+Home Page
+![Home Page]()
+
+Modal
+![Modal]()
+
+Notification Stack:
+Bottom
+![Notification Stack Bottom]()
+
+Top
+![Notification Stack Top]()
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
