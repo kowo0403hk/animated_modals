@@ -1,6 +1,7 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { motion, Variants } from "framer-motion";
 import Backdrop from "../Backdrop";
+import { stateLogger } from "../helpers/stateLogger";
 
 interface Modals {
   text: string;
@@ -101,6 +102,11 @@ const badSuspension = {
 };
 
 const Modal: FC<Modals> = ({ handleClose, text, type }: Modals) => {
+  useEffect(() => {
+    stateLogger("Modal", true);
+    return stateLogger("Modal", false);
+  }, []);
+
   const modalRender = (type: string): JSX.Element => {
     let cssVariant: Variants;
 

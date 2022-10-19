@@ -276,10 +276,6 @@ li {
   color: #9e9e9e;
 }
 
-/* .modal-text {
-  color: black;
-} */
-
 @media screen and (min-width: 960px) {
   button {
     cursor: pointer;
