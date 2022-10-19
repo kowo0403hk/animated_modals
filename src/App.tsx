@@ -4,7 +4,7 @@ import Modal from "./Modal";
 import useModal from "./hooks/useModal";
 import Input from "./Input";
 import { frameLogger } from "./helpers/stateLogger";
-import { StackItem } from "./helpers/array-utils";
+import { StackItem, add } from "./helpers/array-utils";
 
 const App = () => {
   // Modal state management
@@ -98,10 +98,14 @@ const App = () => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
           className="add-button"
-          onClick={() => setNotifications([])}
+          onClick={() => setNotifications(add(notifications, text, style))}
         >
           + Stack'em up!
         </motion.button>
+
+        <NotificationContainer position={position}>
+          {notifications ? <></> : null}
+        </NotificationContainer>
       </motion.main>
     </>
   );
