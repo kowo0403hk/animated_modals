@@ -3,6 +3,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import Modal from "./Modal";
 import useModal from "./hooks/useModal";
 import Input from "./Input";
+import { frameLogger } from "./helpers/stateLogger";
+import { StackItem } from "./helpers/array-utils";
 
 const App = () => {
   // Modal state management
@@ -15,7 +17,8 @@ const App = () => {
     setModalType(e.target.value);
 
   // Notification stack
-  const [notifications, setNotifications] = useState<any[]>([]);
+
+  const [notifications, setNotifications] = useState<StackItem[]>([]);
 
   // Notification text
   const [text, setText] = useState("Awesome Job! 🚀");
@@ -53,7 +56,7 @@ const App = () => {
           Launch Modal
         </motion.button>
 
-        <ModalContainer>
+        <ModalContainer label={modalType}>
           {modalOpen ? (
             <Modal
               modalOpen={modalOpen}
@@ -121,11 +124,12 @@ const SubHeader = ({ text }: SubH) => {
   return <motion.h2 className="sub-header">{text}</motion.h2>;
 };
 
-interface Container {
+interface ModalContainer {
   children: JSX.Element | null;
+  label: string;
 }
 
-const ModalContainer = ({ children }: Container) => {
+const ModalContainer = ({ children, label }: ModalContainer) => {
   // enable the animation of a component that have been removed from the tree
   return (
     <AnimatePresence
@@ -136,10 +140,30 @@ const ModalContainer = ({ children }: Container) => {
       // animation before entering component is rendered
       mode="wait"
       // Fires when all exiting nodes have completed animating out
-      onExitComplete={() => null}
+      onExitComplete={() => frameLogger(label)}
     >
       {children}
     </AnimatePresence>
+  );
+};
+
+interface NotiContainer {
+  children: JSX.Element | null;
+  position: string;
+}
+
+const NotificationContainer = ({ children, position }: NotiContainer) => {
+  return (
+    <div className="container">
+      <ul className={position}>
+        <AnimatePresence
+          initial={false}
+          onExitComplete={() => frameLogger("Notification Container")}
+        >
+          {children}
+        </AnimatePresence>
+      </ul>
+    </div>
   );
 };
 
