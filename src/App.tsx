@@ -19,21 +19,21 @@ const App: FC = () => {
       </motion.button>
 
       <ModalContainer>
-        {modalOpen && (
+        {modalOpen ? (
           <Modal
             modalOpen={modalOpen}
             text={modalType}
             type={modalType}
             handleClose={close}
           />
-        )}
+        ) : null}
       </ModalContainer>
     </div>
   );
 };
 
 interface Container {
-  children: any;
+  children: JSX.Element | null;
 }
 
 const ModalContainer = ({ children }: Container) => {

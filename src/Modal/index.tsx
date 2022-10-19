@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import Backdrop from "../Backdrop";
 
 interface Modals {
@@ -16,14 +16,18 @@ const dropIn = {
   },
   visible: {
     y: "0",
+    opacity: 1,
     transition: {
       duration: 0.1,
       type: "spring",
-      damping: 0.25,
+      damping: 25,
       stiffness: 500,
     },
   },
-  exit: { y: "100vh", opacity: 0 },
+  exit: {
+    y: "100vh",
+    opacity: 0,
+  },
 };
 
 const flip = {
@@ -97,23 +101,35 @@ const badSuspension = {
 };
 
 const Modal: FC<Modals> = ({ handleClose, text, type }: Modals) => {
-  return (
-    <Backdrop onClick={handleClose}>
-      {type === "dropIn" && (
-        <motion.div
-          onClick={(e) => e.stopPropagation()} // Prevent click from closing modal
-          className="modal orange-gradient"
-          variants={dropIn}
-          initial="hidden"
-          animate="visible"
-          exit="exit"
-        >
-          <ModalText text={text} />
-          <ModalButton onClick={handleClose} label="Close" />
-        </motion.div>
-      )}
-    </Backdrop>
-  );
+  const modalRender = (type: string): JSX.Element => {
+    let cssVariant: Variants;
+
+    if (type === "dropIn") {
+      cssVariant = dropIn;
+    } else if (type === "flip") {
+      cssVariant = flip;
+    } else if (type === "newspaper") {
+      cssVariant = newspaper;
+    } else {
+      cssVariant = badSuspension;
+    }
+
+    return (
+      <motion.div
+        onClick={(e) => e.stopPropagation()} // Prevent click from closing modal
+        className="modal orange-gradient"
+        variants={cssVariant}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+      >
+        <ModalText text={text} />
+        <ModalButton onClick={handleClose} label="Close" />
+      </motion.div>
+    );
+  };
+
+  return <Backdrop onClick={handleClose}>{modalRender(type)}</Backdrop>;
 };
 
 interface Text {

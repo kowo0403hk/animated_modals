@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { motion } from "framer-motion";
 
 interface Backdrops {
-  children: any;
+  children: JSX.Element;
   onClick: () => void;
 }
 
