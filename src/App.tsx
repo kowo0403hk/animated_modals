@@ -5,6 +5,7 @@ import useModal from "./hooks/useModal";
 import Input from "./Input";
 import { frameLogger } from "./helpers/stateLogger";
 import { StackItem, add } from "./helpers/array-utils";
+import Notification from "./Notification";
 
 const App = () => {
   // Modal state management
@@ -104,7 +105,16 @@ const App = () => {
         </motion.button>
 
         <NotificationContainer position={position}>
-          {notifications ? <></> : null}
+          {notifications
+            ? notifications.map((notification: StackItem) => (
+                <Notification
+                  key={notification.id}
+                  notifications={notifications}
+                  setNotifications={setNotifications}
+                  notification={notification}
+                />
+              ))
+            : null}
         </NotificationContainer>
       </motion.main>
     </>
@@ -128,12 +138,12 @@ const SubHeader = ({ text }: SubH) => {
   return <motion.h2 className="sub-header">{text}</motion.h2>;
 };
 
-interface ModalContainer {
+interface ModalContainerItems {
   children: JSX.Element | null;
   label: string;
 }
 
-const ModalContainer = ({ children, label }: ModalContainer) => {
+const ModalContainer = ({ children, label }: ModalContainerItems) => {
   // enable the animation of a component that have been removed from the tree
   return (
     <AnimatePresence
@@ -152,7 +162,7 @@ const ModalContainer = ({ children, label }: ModalContainer) => {
 };
 
 interface NotiContainer {
-  children: JSX.Element | null;
+  children: JSX.Element[] | null;
   position: string;
 }
 
