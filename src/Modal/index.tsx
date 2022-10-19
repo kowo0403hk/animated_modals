@@ -79,28 +79,6 @@ const newspaper = {
   },
 };
 
-const badSuspension = {
-  hidden: {
-    y: "-100vh",
-    opacity: 0,
-    transform: "scale(0) rotateX(-360deg)",
-  },
-  visible: {
-    y: "-25vh",
-    opacity: 1,
-    transition: {
-      duration: 0.2,
-      type: "spring",
-      damping: 15,
-      stiffness: 500,
-    },
-  },
-  exit: {
-    y: "-100vh",
-    opacity: 0,
-  },
-};
-
 const Modal: FC<Modals> = ({ handleClose, text, type }: Modals) => {
   useEffect(() => {
     stateLogger("Modal", true);
@@ -108,16 +86,14 @@ const Modal: FC<Modals> = ({ handleClose, text, type }: Modals) => {
   }, []);
 
   const modalRender = (type: string): JSX.Element => {
-    let cssVariant: Variants;
+    let cssVariant: Variants = {};
 
     if (type === "dropIn") {
       cssVariant = dropIn;
     } else if (type === "flip") {
       cssVariant = flip;
-    } else if (type === "newspaper") {
-      cssVariant = newspaper;
     } else {
-      cssVariant = badSuspension;
+      cssVariant = newspaper;
     }
 
     return (

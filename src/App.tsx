@@ -3,12 +3,27 @@ import { AnimatePresence, motion } from "framer-motion";
 import Modal from "./Modal";
 import useModal from "./hooks/useModal";
 
-const App: FC = () => {
+const App = () => {
+  // Modal state management
   const { modalOpen, close, open } = useModal();
+
+  // Modal type
   const [modalType, setModalType] = useState("dropIn");
 
+  const handleType = (e: React.ChangeEvent<HTMLSelectElement>) =>
+    setModalType(e.target.value);
+
   return (
-    <div>
+    <motion.main>
+      <Header />
+      <SubHeader text="Animated Modals" />
+
+      <motion.select className="input" onChange={handleType}>
+        <option value="dropIn">🪂 Drop in</option>
+        <option value="flip">🛹 Flip</option>
+        <option value="newspaper">🗞 Newspaper</option>
+      </motion.select>
+
       <motion.button
         whileHover={{ scale: 1.1 }} //equals to CSS => button:hover {transform: scale(1.1)}
         whileTap={{ scale: 0.9 }}
@@ -28,8 +43,25 @@ const App: FC = () => {
           />
         ) : null}
       </ModalContainer>
-    </div>
+    </motion.main>
   );
+};
+
+const Header = () => {
+  return (
+    <motion.h1 className="pink">
+      Framer Motion
+      <span className="light-blue"> ⚛️ React</span>
+    </motion.h1>
+  );
+};
+
+interface SubH {
+  text: string;
+}
+
+const SubHeader = ({ text }: SubH) => {
+  return <motion.h2 className="sub-header">{text}</motion.h2>;
 };
 
 interface Container {
