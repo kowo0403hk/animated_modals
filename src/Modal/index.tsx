@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import { FC, useEffect } from "react";
 import { motion, Variants } from "framer-motion";
 import Backdrop from "../Backdrop";
 import { stateLogger } from "../helpers/stateLogger";
