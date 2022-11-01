@@ -4,6 +4,13 @@ This is an antimaiton practice project to strengthen my knowledge about CSS anit
 
 All credits to Frieship.io (https://www.youtube.com/watch?v=SuqU904ZHA4).
 
+## Video
+
+
+https://user-images.githubusercontent.com/79962776/199335037-22b71bdc-9c3c-420d-b6e3-b6d0f02fb2b8.mp4
+
+
+
 ## Screenshots
 
 Home Page
